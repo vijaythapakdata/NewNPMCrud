@@ -7,7 +7,7 @@ import { DefaultButton, DetailsList, Dialog, DialogFooter, DialogType, IconButto
 
 interface IQuotesState{
   Title:string;
-  Author:string;
+  Author1:string;
   Id:number;
 }
 
@@ -40,7 +40,7 @@ const getlistitems=await _sp.web.lists.getByTitle('Quotes').items();
 //settting the list items to the state
 setQuotes(getlistitems.map((each:IQuotesState)=>({
   quote:each.Title,
-  author:each.Author,
+  author:each.Author1,
   id:each.Id
 })));
     }
@@ -65,7 +65,7 @@ console.log("List items fetched",quotes);
       try{
 await list.items.add({
   Title:newQuote,
-  Author:newAuthor
+  Author1:newAuthor
 });
 //close the add modal dialog
 setIsAddHidden(true);
@@ -108,7 +108,7 @@ const editListItem=async()=>{
   try{
     await list.items.getById(currentId).update({
       Title:editeQuote,
-      Author:editeAuthor
+      Author1:editeAuthor
     });
     //close the edit modal dialog
     setIsEditHidden(true);
